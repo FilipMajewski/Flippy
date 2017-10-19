@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - StartPoint
+  - UICanvas
   layers:
   - Default
   - TransparentFX
