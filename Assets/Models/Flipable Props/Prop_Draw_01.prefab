@@ -150,5 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712776c66296dca42b878f77fcdf4409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastPosition: {fileID: 4995886144529254}
   flippyObject: {fileID: 11400000, guid: 564280f11d8fe294e9e7ab8d5e6fe001, type: 2}
+  grounded:
+    serializedVersion: 2
+    m_Bits: 256
+  justSpawned: 0
   stillFliping: 0

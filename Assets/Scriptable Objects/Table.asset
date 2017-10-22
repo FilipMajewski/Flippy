@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Name: Table
   m_EditorClassIdentifier: 
   objectName: Table
+  price: 0
+  forcePower: 8
+  torquePower: 4
+  mass: 1
   aSprite: {fileID: 21300000, guid: 5934cbc7300b5c04981b5affdf2e3212, type: 3}
   aSound: {fileID: 0}
   objectPrefab: {fileID: 1397206550367432, guid: 2bc4739b08e9a904eab7ebd40104f45c,

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Name: Chair
   m_EditorClassIdentifier: 
   objectName: Chair
+  price: 0
+  forcePower: 8
+  torquePower: 4
+  mass: 1
   aSprite: {fileID: 21300000, guid: 29a57d76aeeb0ec45ad3f4adb824e47e, type: 3}
   aSound: {fileID: 0}
   objectPrefab: {fileID: 100000, guid: 27bfb35903d157d44a997df93834bac6, type: 2}

@@ -16,9 +16,9 @@ public class FollowObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position - offset;
-
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        transform.position = player.position - offset;
     }
 }

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: Big Clock
   m_EditorClassIdentifier: 
   objectName: Big Clock
-  price: 10
+  price: 0
+  forcePower: 8
+  torquePower: 4
+  mass: 1
   aSprite: {fileID: 21300000, guid: 81c50afaabd0a4b4ebd2c9922af20fd2, type: 3}
   aSound: {fileID: 0}
   objectPrefab: {fileID: 100000, guid: 01aabf04aa6a82741b8b0e2492e943ac, type: 2}

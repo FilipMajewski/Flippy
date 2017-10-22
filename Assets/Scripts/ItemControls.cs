@@ -12,7 +12,7 @@ public class ItemControls : MonoBehaviour
     Vector2 slideStop;
     Vector2 move;
 
-    Transform raycastPosition;
+    public Transform raycastPosition;
     Transform startPoint;
 
     public FlippyObject flippyObject;
@@ -20,10 +20,11 @@ public class ItemControls : MonoBehaviour
     float forcePower;
     float torquePower;
 
-    float rayDistance = 0.1f;
-
+    float rayDistance = 0.2f;
+    Quaternion startRotation;
     bool addPoints = false;
-    bool grounded;
+    public LayerMask grounded;
+    public bool justSpawned;
     public bool stillFliping;
 
     UIControls ui;
@@ -31,7 +32,7 @@ public class ItemControls : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        raycastPosition = GameObject.Find("raycastPoint").transform;
+
         startPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
         rb = GetComponent<Rigidbody>();
         ui = GameObject.FindGameObjectWithTag("GameController").GetComponent<UIControls>();
@@ -40,6 +41,10 @@ public class ItemControls : MonoBehaviour
         torquePower = flippyObject.torquePower;
 
         rb.mass = flippyObject.mass;
+        //justSpawned = true;
+
+        startRotation = transform.rotation;
+
     }
 
     // Update is called once per frame
@@ -57,28 +62,35 @@ public class ItemControls : MonoBehaviour
         {
             slideStop = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             move = slideStop - slideStart;
+
             if (!stillFliping)
             {
                 Flip();
             }
 
-            Debug.Log(move.magnitude);
+
         }
+
+        Debug.Log(addPoints);
 
         if (rb.velocity.magnitude == 0)
         {
             stillFliping = false;
 
-            if (addPoints && Physics.Raycast(raycastPosition.position, -raycastPosition.up, rayDistance))
+            if (addPoints && Physics.Raycast(raycastPosition.position, -raycastPosition.up, rayDistance, grounded))
             {
                 AddPoints();
+
             }
 
-            if (!Physics.Raycast(raycastPosition.position, -raycastPosition.up, rayDistance))
+            if (!Physics.Raycast(raycastPosition.position, -raycastPosition.up, rayDistance, grounded))
             {
                 Restart();
                 ui.ResetScore();
+
             }
+
+
         }
         else
         {
@@ -88,7 +100,7 @@ public class ItemControls : MonoBehaviour
 
     void Flip()
     {
-
+        justSpawned = false;
         rb.AddForce(move * forcePower, ForceMode.Impulse);
 
         if (move.x > 0)
@@ -97,6 +109,7 @@ public class ItemControls : MonoBehaviour
             rb.AddTorque(0, 0, torquePower, ForceMode.Impulse);
 
         StartCoroutine("WaitAndPoints", 0.5f);
+
     }
 
     void AddPoints()
@@ -104,6 +117,8 @@ public class ItemControls : MonoBehaviour
         addPoints = false;
         ui.AddScore();
         startPoint.position = transform.position;
+        //justSpawned = true;
+        //StopCoroutine("WaitAndPoints");
     }
 
     void Restart()
@@ -113,14 +128,14 @@ public class ItemControls : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = startPoint.position;
-        transform.rotation = Quaternion.identity;
+        transform.rotation = startRotation;
+        //justSpawned = true;
     }
 
     private IEnumerator WaitAndPoints(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         addPoints = true;
-
     }
 
 }

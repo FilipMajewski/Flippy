@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: Computer Screen
   m_EditorClassIdentifier: 
   objectName: Computer Screen
-  price: 15
+  price: 0
+  forcePower: 8
+  torquePower: 4
+  mass: 1
   aSprite: {fileID: 21300000, guid: 75f0760301a01f04d9142eed75bf272c, type: 3}
   aSound: {fileID: 0}
   objectPrefab: {fileID: 100000, guid: 5f9a66f95d8884044ba9163096adeaa1, type: 2}

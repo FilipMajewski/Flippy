@@ -31,8 +31,20 @@ public class ObjectsActivationButton : MonoBehaviour
         if (objectIsUnlock)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Destroy(player);
-            Instantiate(flippyObject.objectPrefab, startPosition);
+
+            if (player.GetComponent<ItemControls>().flippyObject.objectPrefab.name == flippyObject.objectPrefab.name)
+            {
+                Debug.Log("Same Name");
+                return;
+            }
+            else
+            {
+                Destroy(player);
+                Instantiate(flippyObject.objectPrefab, startPosition.position, flippyObject.objectPrefab.transform.rotation);
+                //player.GetComponent<ItemControls>().justSpawned = true;
+            }
+
+
         }
 
         else
