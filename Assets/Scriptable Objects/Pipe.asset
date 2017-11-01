@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Pipe
   m_EditorClassIdentifier: 
   objectName: Pipe
-  price: 0
+  price: 2500
   forcePower: 8
   torquePower: 4
   mass: 1

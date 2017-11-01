@@ -6,18 +6,32 @@ using UnityEngine.UI;
 public class ObjectsActivationButton : MonoBehaviour
 {
     public Image icon;
+    public Image lockIcon;
     public FlippyObject flippyObject;
     public Button unlock;
-    public Button select;
+    public Text price;
+
     public bool objectIsUnlock;
 
     Transform startPosition;
 
+    UIControls uiControls;
+
     // Use this for initialization
     void Start()
     {
+        uiControls = GameObject.FindGameObjectWithTag("GameController").GetComponent<UIControls>();
+
         icon.sprite = flippyObject.aSprite;
         startPosition = GameObject.FindGameObjectWithTag("StartPoint").transform;
+        if (PlayerPrefs.GetInt(flippyObject.objectName) == 1)
+        {
+            objectIsUnlock = true;
+
+        }
+
+        if (objectIsUnlock)
+            lockIcon.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,7 +45,7 @@ public class ObjectsActivationButton : MonoBehaviour
         if (objectIsUnlock)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-
+            unlock.gameObject.SetActive(false);
             if (player.GetComponent<ItemControls>().flippyObject.objectPrefab.name == flippyObject.objectPrefab.name)
             {
                 Debug.Log("Same Name");
@@ -51,7 +65,8 @@ public class ObjectsActivationButton : MonoBehaviour
         {
             //show unlockbutton
             unlock.gameObject.SetActive(true);
-            select.gameObject.SetActive(false);
+            price.text = "Unlock for: " + flippyObject.price;
+            //select.gameObject.SetActive(false);
             unlock.onClick.AddListener(OnUnlockClick);
         }
     }
@@ -62,13 +77,18 @@ public class ObjectsActivationButton : MonoBehaviour
         {
             PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - flippyObject.price);
             objectIsUnlock = true;
-
+            PlayerPrefs.SetInt(flippyObject.objectName, 1);
             unlock.gameObject.SetActive(false);
-            select.gameObject.SetActive(true);
+            //select.gameObject.SetActive(true);
+            lockIcon.gameObject.SetActive(false);
+            uiControls.coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
+            OnButtonClick();
         }
         else
         {
             // show notification that you need more coins
+            uiControls.ShowAdsPanel();
+
         }
     }
 }

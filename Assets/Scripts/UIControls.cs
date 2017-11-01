@@ -11,6 +11,7 @@ public class UIControls : MonoBehaviour
     public RectTransform roomPanel;
     public RectTransform optionsPanel;
     public RectTransform startPanel;
+    public RectTransform adsPanel;
 
     public Text scoreText;
     public Text coinsText;
@@ -72,21 +73,34 @@ public class UIControls : MonoBehaviour
     public void ChangeObject()
     {
         objectPanel.DOLocalMoveY(0, 1).SetEase(Ease.OutBack);
+        buttons.DOScale(Vector3.zero, 1);
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
     public void ChangeRoom()
     {
         roomPanel.DOLocalMoveY(0, 1).SetEase(Ease.OutBack);
+        buttons.DOScale(Vector3.zero, 1);
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
     public void ChangeObjectBack()
     {
         objectPanel.DOLocalMoveY(-800, 1).SetEase(Ease.InBack);
+        buttons.DOScale(Vector3.one, 1);
+        HideAdsPanel();
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
     public void ChangeRoomBack()
     {
         roomPanel.DOLocalMoveY(-800, 1).SetEase(Ease.InBack);
+        buttons.DOScale(Vector3.one, 1);
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
     public void OptionsBack()
@@ -99,6 +113,20 @@ public class UIControls : MonoBehaviour
     {
         startPanel.DOScale(Vector3.zero, 1);
         buttons.DOScale(Vector3.one, 1).SetEase(Ease.OutBack);
+    }
+
+    public void ShowAdsPanel()
+    {
+        adsPanel.DOScale(Vector3.one, 0.5f).SetEase(Ease.InCubic);
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
+    }
+
+    public void HideAdsPanel()
+    {
+        adsPanel.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutCubic);
+
+        coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
 

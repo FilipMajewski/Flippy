@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Double Bed
   m_EditorClassIdentifier: 
   objectName: Double Bed
-  price: 0
+  price: 300
   forcePower: 8
   torquePower: 4
   mass: 1

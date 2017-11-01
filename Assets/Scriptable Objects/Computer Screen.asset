@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Computer Screen
   m_EditorClassIdentifier: 
   objectName: Computer Screen
-  price: 0
+  price: 500
   forcePower: 8
   torquePower: 4
   mass: 1

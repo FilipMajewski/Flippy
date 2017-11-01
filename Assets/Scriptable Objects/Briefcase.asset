@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Briefcase
   m_EditorClassIdentifier: 
   objectName: Briefcase
-  price: 0
+  price: 250
   forcePower: 8
   torquePower: 4
   mass: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Speakers
   m_EditorClassIdentifier: 
   objectName: Speakers
-  price: 0
+  price: 200
   forcePower: 8
   torquePower: 4
   mass: 1

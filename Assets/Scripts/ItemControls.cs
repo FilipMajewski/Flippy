@@ -50,6 +50,9 @@ public class ItemControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (EventSystem.current.IsPointerOverGameObject(0))
+            return;
+
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
@@ -71,7 +74,7 @@ public class ItemControls : MonoBehaviour
 
         }
 
-        Debug.Log(addPoints);
+        Debug.Log("addPoints: " + addPoints);
 
         if (rb.velocity.magnitude == 0)
         {

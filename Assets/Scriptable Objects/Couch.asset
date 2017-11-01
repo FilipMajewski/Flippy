@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Couch
   m_EditorClassIdentifier: 
   objectName: Couch
-  price: 0
+  price: 120
   forcePower: 8
   torquePower: 4
   mass: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Chair
   m_EditorClassIdentifier: 
   objectName: Chair
-  price: 0
+  price: 380
   forcePower: 8
   torquePower: 4
   mass: 1

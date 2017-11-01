@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Shelf
   m_EditorClassIdentifier: 
   objectName: Shelf
-  price: 0
+  price: 600
   forcePower: 8
   torquePower: 4
   mass: 1

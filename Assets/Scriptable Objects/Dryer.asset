@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Dryer
   m_EditorClassIdentifier: 
   objectName: Dryer
-  price: 0
+  price: 1500
   forcePower: 8
   torquePower: 4
   mass: 1

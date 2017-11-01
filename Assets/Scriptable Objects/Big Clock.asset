@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Big Clock
   m_EditorClassIdentifier: 
   objectName: Big Clock
-  price: 0
+  price: 50
   forcePower: 8
   torquePower: 4
   mass: 1
