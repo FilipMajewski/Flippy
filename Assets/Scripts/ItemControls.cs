@@ -28,23 +28,35 @@ public class ItemControls : MonoBehaviour
     public bool stillFliping;
 
     UIControls ui;
+    UnityAds ads;
 
+    AudioSource source;
+    AudioClip flipAudioClip;
+
+    int restartCount = 0;
+    int flipsCount;
+    int rateShow;
     // Use this for initialization
     void Start()
     {
+        rateShow = PlayerPrefs.GetInt("Rate");
+        flipsCount = PlayerPrefs.GetInt("Flips");
+        startPoint = GameObject.FindGameObjectWithTag("StartPointNew").transform;
 
-        startPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
         rb = GetComponent<Rigidbody>();
+
         ui = GameObject.FindGameObjectWithTag("GameController").GetComponent<UIControls>();
+        ads = GameObject.FindGameObjectWithTag("GameController").GetComponent<UnityAds>();
 
         forcePower = flippyObject.forcePower;
         torquePower = flippyObject.torquePower;
 
         rb.mass = flippyObject.mass;
-        //justSpawned = true;
 
         startRotation = transform.rotation;
 
+        source = GetComponent<AudioSource>();
+        flipAudioClip = flippyObject.flipSound;
     }
 
     // Update is called once per frame
@@ -74,8 +86,6 @@ public class ItemControls : MonoBehaviour
 
         }
 
-        Debug.Log("addPoints: " + addPoints);
-
         if (rb.velocity.magnitude == 0)
         {
             stillFliping = false;
@@ -84,6 +94,12 @@ public class ItemControls : MonoBehaviour
             {
                 AddPoints();
 
+                if (flipsCount >= 30 && rateShow == 0)
+                {
+                    PlayerPrefs.SetInt("Rate", 1);
+                    ui.ShowRate();
+                    rateShow = 1;
+                }
             }
 
             if (!Physics.Raycast(raycastPosition.position, -raycastPosition.up, rayDistance, grounded))
@@ -103,6 +119,7 @@ public class ItemControls : MonoBehaviour
 
     void Flip()
     {
+        source.PlayOneShot(flipAudioClip);
         justSpawned = false;
         rb.AddForce(move * forcePower, ForceMode.Impulse);
 
@@ -113,6 +130,8 @@ public class ItemControls : MonoBehaviour
 
         StartCoroutine("WaitAndPoints", 0.5f);
 
+        flipsCount++;
+        PlayerPrefs.SetInt("Flips", flipsCount);
     }
 
     void AddPoints()
@@ -120,19 +139,21 @@ public class ItemControls : MonoBehaviour
         addPoints = false;
         ui.AddScore();
         startPoint.position = transform.position;
-        //justSpawned = true;
-        //StopCoroutine("WaitAndPoints");
     }
 
     void Restart()
     {
         addPoints = false;
-        Debug.Log("Restart");
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = startPoint.position;
         transform.rotation = startRotation;
-        //justSpawned = true;
+        restartCount++;
+        if (restartCount > 8)
+        {
+            ads.ShowNormalVideo();
+            restartCount = 0;
+        }
     }
 
     private IEnumerator WaitAndPoints(float waitTime)

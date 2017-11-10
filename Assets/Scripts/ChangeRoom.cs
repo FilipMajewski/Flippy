@@ -15,6 +15,14 @@ public class ChangeRoom : MonoBehaviour
 
     int imageNumber;
 
+    AudioSource source;
+
+    public AudioClip[] clips;
+
+    UIControls ui;
+
+    public Transform startPoint;
+
     private void Awake()
     {
         imageNumber = PlayerPrefs.GetInt("CurrentRoom");
@@ -27,6 +35,13 @@ public class ChangeRoom : MonoBehaviour
         roomImage.sprite = roomIcon[imageNumber];
         roomName.text = roomPrefab[imageNumber].name;
         description.text = showDescriptiontext();
+
+        ui = GameObject.FindGameObjectWithTag("GameController").GetComponent<UIControls>();
+
+        source = GetComponent<AudioSource>();
+
+        source.PlayOneShot(clips[imageNumber]);
+
     }
 
     // Update is called once per frame
@@ -49,12 +64,20 @@ public class ChangeRoom : MonoBehaviour
         PlayerPrefs.SetInt("CurrentRoom", imageNumber);
         roomName.text = roomPrefab[imageNumber].name;
         description.text = showDescriptiontext();
+
+        ui.audioSource.PlayOneShot(ui.buttonSound);
     }
 
     public void SelectRoom()
     {
         Destroy(GameObject.FindGameObjectWithTag("Rooms"));
         Instantiate(roomPrefab[imageNumber], gameObject.transform);
+        source.Stop();
+        source.PlayOneShot(clips[imageNumber]);
+        ui.audioSource.PlayOneShot(ui.roomChanged);
+        startPoint.position = new Vector3(3.7f, 0.3f, 0f);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = startPoint.position;
     }
 
     string showDescriptiontext()
@@ -63,22 +86,26 @@ public class ChangeRoom : MonoBehaviour
 
         if (imageNumber == 0)
         {
-            description = "Place where magic happens.\nNo bonuses here.";
+            description = "Place where magic happens.";
+
         }
 
         if (imageNumber == 1)
         {
-            description = "Run chicken, run.\nEvery succesfull flip +1 coin.";
+            description = "Run chicken, run.";
+
         }
 
         if (imageNumber == 2)
         {
-            description = "Developer secret room.\nGravity is lower";
+            description = "Developer secret room.";
+
         }
 
         if (imageNumber == 3)
         {
-            description = "Something smells funny here.\nEvery succesfull flip coins multiply *3";
+            description = "Something smells funny here.";
+
         }
 
         return description;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 54850984659520402}
   - component: {fileID: 65065052211310810}
   - component: {fileID: 65642704273744020}
+  - component: {fileID: 82430175479739260}
   m_Layer: 0
   m_Name: Prop_Couch_08
   m_TagString: Player
@@ -154,6 +155,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7022872, y: 1.5757504, z: 2.9317937}
   m_Center: {x: 0.008709192, y: 0.7878752, z: -0.06510472}
+--- !u!82 &82430175479739260
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243664984639474138, guid: df818f2afc2b2634bbfe537f648cab54,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114534207943791336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastPosition: {fileID: 4512627124958020}
-  flippyObject: {fileID: 0}
+  flippyObject: {fileID: 11400000, guid: 2c3c232a0b8ab8b40a5f602fc26a8b6a, type: 2}
   grounded:
     serializedVersion: 2
     m_Bits: 256

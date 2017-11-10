@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae3e8ed86ff5fd4b83caa7c5995ae6f, type: 3}
+  m_Name: Retro TV
+  m_EditorClassIdentifier: 
+  objectName: Retro TV
+  price: 1200
+  forcePower: 8
+  torquePower: 4
+  mass: 1
+  aSprite: {fileID: 21300000, guid: ffab622282aadf348a480d7c3507aaa3, type: 3}
+  flipSound: {fileID: 8300000, guid: 8e18d867682bcd74682a8cd72dc2f3fb, type: 3}
+  collisonSound: {fileID: 0}
+  objectPrefab: {fileID: 100000, guid: ecff0bd8b5062054fb3693e27b17c901, type: 2}

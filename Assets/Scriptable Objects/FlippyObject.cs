@@ -15,7 +15,8 @@ public class FlippyObject : ScriptableObject
     public float mass = 1;
 
     public Sprite aSprite;
-    public AudioClip aSound;
+    public AudioClip flipSound;
+    public AudioClip collisonSound;
 
     public GameObject objectPrefab;
 

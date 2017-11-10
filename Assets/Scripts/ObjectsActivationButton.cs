@@ -10,6 +10,7 @@ public class ObjectsActivationButton : MonoBehaviour
     public FlippyObject flippyObject;
     public Button unlock;
     public Text price;
+    public Text nameText;
 
     public bool objectIsUnlock;
 
@@ -49,6 +50,7 @@ public class ObjectsActivationButton : MonoBehaviour
             if (player.GetComponent<ItemControls>().flippyObject.objectPrefab.name == flippyObject.objectPrefab.name)
             {
                 Debug.Log("Same Name");
+                unlock.onClick.RemoveAllListeners();
                 return;
             }
             else
@@ -56,6 +58,8 @@ public class ObjectsActivationButton : MonoBehaviour
                 Destroy(player);
                 Instantiate(flippyObject.objectPrefab, startPosition.position, flippyObject.objectPrefab.transform.rotation);
                 //player.GetComponent<ItemControls>().justSpawned = true;
+                uiControls.audioSource.PlayOneShot(uiControls.newItemInsta);
+                unlock.onClick.RemoveAllListeners();
             }
 
 
@@ -67,8 +71,12 @@ public class ObjectsActivationButton : MonoBehaviour
             unlock.gameObject.SetActive(true);
             price.text = "Unlock for: " + flippyObject.price;
             //select.gameObject.SetActive(false);
+            unlock.onClick.RemoveAllListeners();
             unlock.onClick.AddListener(OnUnlockClick);
+
         }
+
+        nameText.text = flippyObject.name;
     }
 
     public void OnUnlockClick()
@@ -83,12 +91,16 @@ public class ObjectsActivationButton : MonoBehaviour
             lockIcon.gameObject.SetActive(false);
             uiControls.coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
             OnButtonClick();
+
+            uiControls.audioSource.PlayOneShot(uiControls.itemUnlock);
+            unlock.onClick.RemoveAllListeners();
         }
-        else
+        if (flippyObject.price > PlayerPrefs.GetInt("Coins") && !objectIsUnlock)
         {
             // show notification that you need more coins
             uiControls.ShowAdsPanel();
-
+            uiControls.audioSource.PlayOneShot(uiControls.playAds);
+            Debug.Log("Need more coins");
         }
     }
 }

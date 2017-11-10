@@ -16,6 +16,7 @@ MonoBehaviour:
   forcePower: 8
   torquePower: 4
   mass: 1
-  aSprite: {fileID: 0}
-  aSound: {fileID: 0}
+  aSprite: {fileID: 21300000, guid: 183b5cb18fac18649b413a76f10f627f, type: 3}
+  flipSound: {fileID: 8300000, guid: 8e18d867682bcd74682a8cd72dc2f3fb, type: 3}
+  collisonSound: {fileID: 0}
   objectPrefab: {fileID: 100000, guid: 3a5e2e0b3c651aa4b89560e0139aa263, type: 2}
